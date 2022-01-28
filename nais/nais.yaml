@@ -23,7 +23,7 @@ spec:
     - "{{this}}"
   {{/each}}
   vault:
-    enabled: false
+    enabled: true
   resources:
     limits:
       cpu: "3"
