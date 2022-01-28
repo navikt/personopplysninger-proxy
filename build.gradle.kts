@@ -75,7 +75,7 @@ tasks {
 
         environment("CORS_ALLOWED_ORIGINS", "localhost:9002")
 
-        environment("NAIS_CLUSTER_NAME", "dev-sbs")
+        environment("NAIS_CLUSTER_NAME", "dev-fss")
         environment("NAIS_NAMESPACE", "personbruker")
 
         main = application.mainClassName

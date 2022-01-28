@@ -1,33 +1,34 @@
-apiVersion: nais.io/v1alpha1
-kind: Application
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
 metadata:
   name: personopplysninger-proxy
-  namespace: {{namespace}}
+  namespace: personbruker
   labels:
     team: personbruker
 spec:
-  image: {{image}}:{{version}}
-  team: personbruker
+  image: {{version}}
   port: 8080
-  ingresses:
-  {{#each ingresses as |url|}}
-     - {{url}}
-  {{/each}}
   liveness:
     path: /personopplysninger-proxy/internal/isAlive
     initialDelay: 10
   readiness:
     path: /personopplysninger-proxy/internal/isReady
     initialDelay: 10
-  vault:
-    enabled: true
   replicas:
     min: 2
     max: 4
   webproxy: true
+  ingresses:
+  {{#each ingresses}}
+    - "{{this}}"
+  {{/each}}
+  vault:
+    enabled: true
   resources:
     limits:
-      cpu: '3'
-      memory: 1500Mi
+      cpu: "3"
+      memory: 768Mi
     requests:
-      memory: 1500Mi
+      cpu: "500m"
+      memory: 384Mi
+
