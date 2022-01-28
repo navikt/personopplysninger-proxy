@@ -1,9 +1,9 @@
-package no.nav.tms.template.config
+package no.nav.personopplysninger.proxy.config
 
-import io.ktor.client.HttpClient
-import io.ktor.client.engine.apache.Apache
-import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.features.HttpTimeout
+import io.ktor.client.*
+import io.ktor.client.engine.apache.*
+import io.ktor.client.features.*
+import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 
 object HttpClientBuilder {

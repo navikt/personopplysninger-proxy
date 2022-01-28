@@ -1,9 +1,8 @@
-package no.nav.tms.template.health
+package no.nav.personopplysninger.proxy.health
 
-import io.ktor.application.call
-import io.ktor.http.ContentType
-import io.ktor.http.HttpStatusCode
-import io.ktor.response.respondText
+import io.ktor.application.*
+import io.ktor.http.*
+import io.ktor.response.*
 import io.ktor.routing.Routing
 import io.ktor.routing.get
 
