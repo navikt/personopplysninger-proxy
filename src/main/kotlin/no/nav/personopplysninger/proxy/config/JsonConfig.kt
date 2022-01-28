@@ -1,4 +1,4 @@
-package no.nav.tms.template.config
+package no.nav.personopplysninger.proxy.config
 
 import kotlinx.serialization.json.Json
 

@@ -1,6 +1,6 @@
-package no.nav.tms.template.config
+package no.nav.personopplysninger.proxy.config
 
-import io.ktor.client.HttpClient
+import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import kotlinx.coroutines.Dispatchers
