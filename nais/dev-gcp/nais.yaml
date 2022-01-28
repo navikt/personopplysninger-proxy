@@ -21,8 +21,7 @@ spec:
     max: 4
   webproxy: true
   ingresses:
-    - "https://person.dev.nav.no/personopplysninger-proxy"
-    - "https://personopplysninger-proxy.intern.dev.nav.no/personopplysninger-proxy"
+    - "https://personopplysninger-proxy.dev-fss-pub.nais.io"
   resources:
     limits:
       cpu: "3"
