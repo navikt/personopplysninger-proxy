@@ -8,6 +8,7 @@ import io.ktor.routing.*
 import io.ktor.serialization.*
 import io.ktor.util.*
 import no.nav.personopplysninger.proxy.health.healthApi
+import no.nav.personopplysninger.proxy.routes.kodeverkRouting
 
 @KtorExperimentalAPI
 fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()) {
@@ -27,6 +28,7 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
 
     routing {
         healthApi(appContext.healthService)
+        kodeverkRouting(HttpClientBuilder.build(), environment)
     }
 
     configureShutdownHook(appContext.httpClient)
