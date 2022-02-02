@@ -10,6 +10,7 @@ import io.ktor.util.*
 import no.nav.personopplysninger.proxy.health.healthApi
 import no.nav.personopplysninger.proxy.routes.eregRouting
 import no.nav.personopplysninger.proxy.routes.kodeverkRouting
+import no.nav.personopplysninger.proxy.routes.sporingsloggRouting
 
 @KtorExperimentalAPI
 fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()) {
@@ -31,6 +32,7 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
         healthApi(appContext.healthService)
         kodeverkRouting(appContext.httpClient, environment)
         eregRouting(appContext.httpClient, environment)
+        sporingsloggRouting(appContext.httpClient, environment)
     }
 
     configureShutdownHook(appContext.httpClient)

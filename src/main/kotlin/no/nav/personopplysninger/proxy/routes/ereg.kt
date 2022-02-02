@@ -14,7 +14,7 @@ import no.nav.personopplysninger.proxy.config.NavCallId
 import no.nav.personopplysninger.proxy.config.NavConsumerId
 import java.util.*
 
-const val ORGNR = "orgnr"
+private const val ORGNR = "orgnr"
 
 fun Route.eregRouting(client: HttpClient, environment: Environment) {
     route("/v1/organisasjon/{orgnr}/noekkelinfo") {
@@ -34,9 +34,6 @@ fun Route.eregRouting(client: HttpClient, environment: Environment) {
                 call.application.environment.log.error(e.message, e)
                 throw e
             }
-
-
-
         }
     }
 }
