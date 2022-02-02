@@ -14,6 +14,7 @@ object HttpClientBuilder {
                 serializer = jsonSerializer
             }
             install(HttpTimeout)
+            expectSuccess = false
         }
     }
 
