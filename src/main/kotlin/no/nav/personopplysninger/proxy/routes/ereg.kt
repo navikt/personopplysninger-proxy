@@ -23,7 +23,7 @@ fun Route.eregRouting(client: HttpClient, environment: Environment) {
                 val callId = call.request.header(HttpHeaders.NavCallId) ?: UUID.randomUUID().toString()
 
                 val response: HttpResponse =
-                    client.get(environment.eregUrl + "v1/organisasjon/${call.parameters[ORGNR]}/noekkelinfo") {
+                    client.get(environment.eregUrl + "/v1/organisasjon/${call.parameters[ORGNR]}/noekkelinfo") {
                         header(HttpHeaders.Authorization, call.request.header(HttpHeaders.Authorization))
                         header(HttpHeaders.NavCallId, callId)
                         header(HttpHeaders.NavConsumerId, environment.consumerId)
