@@ -9,10 +9,10 @@ spec:
   image: {{version}}
   port: 8080
   liveness:
-    path: /personopplysninger-proxy/internal/isAlive
+    path: /internal/isAlive
     initialDelay: 10
   readiness:
-    path: /personopplysninger-proxy/internal/isReady
+    path: /internal/isReady
     initialDelay: 10
   replicas:
     min: 2
