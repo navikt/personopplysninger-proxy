@@ -2,5 +2,6 @@
   "ingresses": [
     "https://personopplysninger-proxy.dev-fss-pub.nais.io",
     "https://personopplysninger-proxy.dev.intern.nav.no"
-  ]
+  ],
+  "gcp-cluster": "dev-gcp"
 }

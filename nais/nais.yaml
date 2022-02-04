@@ -18,6 +18,12 @@ spec:
     min: 2
     max: 4
   webproxy: true
+  accessPolicy:
+    inbound:
+      rules:
+        - application: dsop-api
+          namespace: personbruker
+          cluster: {{ gcp-cluster }}
   ingresses:
   {{#each ingresses}}
     - "{{this}}"
