@@ -12,6 +12,7 @@ import no.nav.personopplysninger.proxy.health.healthApi
 import no.nav.personopplysninger.proxy.routes.eregRouting
 import no.nav.personopplysninger.proxy.routes.kodeverkRouting
 import no.nav.personopplysninger.proxy.routes.sporingsloggRouting
+import no.nav.tms.token.support.authentication.installer.installAuthenticators
 
 @KtorExperimentalAPI
 fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()) {
@@ -27,6 +28,12 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
 
     install(ContentNegotiation) {
         json(jsonConfig())
+    }
+
+    installAuthenticators {
+        installTokenXAuth {
+            setAsDefault = true
+        }
     }
 
     routing {

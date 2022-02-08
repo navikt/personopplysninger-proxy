@@ -44,6 +44,8 @@ dependencies {
     implementation(Ktor.serialization)
     implementation(Logback.classic)
     implementation(Logstash.logbackEncoder)
+    implementation(Tms.KtorTokenSupport.tokenXValidation)
+    implementation(Tms.KtorTokenSupport.authenticationInstaller)
 
     testImplementation(Junit.api)
     testImplementation(Ktor.clientMock)
