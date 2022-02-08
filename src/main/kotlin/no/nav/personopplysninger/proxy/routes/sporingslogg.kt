@@ -9,6 +9,7 @@ import io.ktor.http.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import no.nav.personbruker.dittnav.common.logging.util.logger
 import no.nav.personopplysninger.proxy.config.Environment
 import no.nav.personopplysninger.proxy.config.NavCallId
 import no.nav.personopplysninger.proxy.config.NavConsumerId
@@ -27,9 +28,14 @@ fun Route.sporingsloggRouting(client: HttpClient, environment: Environment) {
                         header(HttpHeaders.NavConsumerId, environment.consumerId)
                     }
 
-                call.respond(response.status, response.receive() as String)
+                val responseBody: String = response.receive()
+
+                if (!response.status.isSuccess()) {
+                    logger.warn("Kall til sporingslogg feilet med statuskode ${response.status}: $responseBody")
+                }
+                call.respond(response.status, responseBody)
             } catch (e: Throwable) {
-                call.application.environment.log.error(e.message, e)
+                logger.error(e.message, e)
                 throw e
             }
         }
