@@ -34,10 +34,14 @@ fun Route.kodeverkRouting(client: HttpClient, environment: Environment) {
                         header(HttpHeaders.NavConsumerId, environment.consumerId)
                     }
 
-                call.respond(response.status, response.receive() as String)
+                val responseBody: String = response.receive()
+
+                if (!response.status.isSuccess()) {
+                    logger.warn("Kall til kodeverk feilet med statuskode ${response.status}: $responseBody")
+                }
+                call.respond(response.status, responseBody)
             } catch (e: Throwable) {
-                logger.error(e.message, e)
-                throw e
+                logger.error("Teknisk feil ved kall til kodeverk: ${e.message}", e)
             }
         }
     }

@@ -31,12 +31,11 @@ fun Route.sporingsloggRouting(client: HttpClient, environment: Environment) {
                 val responseBody: String = response.receive()
 
                 if (!response.status.isSuccess()) {
-                    logger.warn("Kall til ${environment.sporingsloggUrl} feilet med statuskode ${response.status}: $responseBody")
+                    logger.warn("Kall til sporingslogg feilet med statuskode ${response.status}: $responseBody")
                 }
                 call.respond(response.status, responseBody)
             } catch (e: Throwable) {
                 logger.error("Teknisk feil ved kall til sporingslogg: ${e.message}", e)
-                throw e
             }
         }
     }
