@@ -35,7 +35,7 @@ fun Route.sporingsloggRouting(client: HttpClient, environment: Environment) {
                 }
                 call.respond(response.status, responseBody)
             } catch (e: Throwable) {
-                logger.error(e.message, e)
+                logger.error("Teknisk feil ved kall til sporingslogg: ${e.message}", e)
                 throw e
             }
         }
