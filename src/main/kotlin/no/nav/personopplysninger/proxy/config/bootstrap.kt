@@ -1,6 +1,7 @@
 package no.nav.personopplysninger.proxy.config
 
 import io.ktor.application.*
+import io.ktor.auth.*
 import io.ktor.client.*
 import io.ktor.features.*
 import io.ktor.http.*
@@ -30,9 +31,11 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
 
     routing {
         healthApi(appContext.healthService)
-        kodeverkRouting(appContext.httpClient, environment)
-        eregRouting(appContext.httpClient, environment)
-        sporingsloggRouting(appContext.httpClient, environment)
+        authenticate {
+            kodeverkRouting(appContext.httpClient, environment)
+            eregRouting(appContext.httpClient, environment)
+            sporingsloggRouting(appContext.httpClient, environment)
+        }
     }
 
     configureShutdownHook(appContext.httpClient)

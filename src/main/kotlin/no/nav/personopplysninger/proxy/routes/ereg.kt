@@ -13,6 +13,7 @@ import no.nav.personbruker.dittnav.common.logging.util.logger
 import no.nav.personopplysninger.proxy.config.Environment
 import no.nav.personopplysninger.proxy.config.NavCallId
 import no.nav.personopplysninger.proxy.config.NavConsumerId
+import no.nav.personopplysninger.proxy.config.NavSelvbetjeningstoken
 import java.util.*
 
 private const val ORGNR = "orgnr"
@@ -25,7 +26,7 @@ fun Route.eregRouting(client: HttpClient, environment: Environment) {
 
                 val response: HttpResponse =
                     client.get(environment.eregUrl + "/v1/organisasjon/${call.parameters[ORGNR]}/noekkelinfo") {
-                        header(HttpHeaders.Authorization, call.request.header(HttpHeaders.Authorization))
+                        header(HttpHeaders.Authorization, call.request.header(HttpHeaders.NavSelvbetjeningstoken))
                         header(HttpHeaders.NavCallId, callId)
                         header(HttpHeaders.NavConsumerId, environment.consumerId)
                     }
