@@ -5,7 +5,6 @@ import io.ktor.http.*
 import io.ktor.response.*
 import io.ktor.routing.Routing
 import io.ktor.routing.get
-import no.nav.personbruker.dittnav.common.logging.util.logger
 
 fun Routing.healthApi(healthService: HealthService) {
 
@@ -16,7 +15,6 @@ fun Routing.healthApi(healthService: HealthService) {
     }
 
     get("/internal/isAlive") {
-        logger.info("Liveness ok")
         call.respondText(text = "ALIVE", contentType = ContentType.Text.Plain)
     }
 

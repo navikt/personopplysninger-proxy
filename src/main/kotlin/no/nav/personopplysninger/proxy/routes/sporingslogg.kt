@@ -25,7 +25,7 @@ fun Route.sporingsloggRouting(client: HttpClient, environment: Environment) {
 
                 val response: HttpResponse =
                     client.get(environment.sporingsloggUrl) {
-                        header(HttpHeaders.Authorization, call.request.header(HttpHeaders.NavSelvbetjeningstoken))
+                        header(HttpHeaders.Authorization, "Bearer ".plus(call.request.header(HttpHeaders.NavSelvbetjeningstoken)))
                         header(HttpHeaders.NavCallId, callId)
                         header(HttpHeaders.NavConsumerId, environment.consumerId)
                     }
