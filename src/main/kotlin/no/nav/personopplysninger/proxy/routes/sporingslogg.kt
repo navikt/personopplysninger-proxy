@@ -20,6 +20,7 @@ fun Route.sporingsloggRouting(client: HttpClient, environment: Environment) {
     route("/sporingslogg") {
         get {
             try {
+                logger.info("Kall mottatt")
                 val callId = call.request.header(HttpHeaders.NavCallId) ?: UUID.randomUUID().toString()
 
                 val response: HttpResponse =
