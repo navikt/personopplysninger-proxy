@@ -9,6 +9,7 @@ import io.ktor.http.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import kotlinx.serialization.json.Json
 import no.nav.personbruker.dittnav.common.logging.util.logger
 import no.nav.personopplysninger.proxy.config.Environment
 import no.nav.personopplysninger.proxy.config.NavCallId
@@ -34,7 +35,7 @@ fun Route.kodeverkRouting(client: HttpClient, environment: Environment) {
                         header(HttpHeaders.NavConsumerId, environment.consumerId)
                     }
 
-                val responseBody: String = response.receive()
+                val responseBody: Json = response.receive()
 
                 if (!response.status.isSuccess()) {
                     logger.warn("Kall til kodeverk feilet med statuskode ${response.status}: $responseBody")
