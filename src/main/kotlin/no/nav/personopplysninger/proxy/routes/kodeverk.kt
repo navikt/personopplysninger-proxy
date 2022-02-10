@@ -39,6 +39,7 @@ fun Route.kodeverkRouting(client: HttpClient, environment: Environment) {
 
                 if (!response.status.isSuccess()) {
                     logger.warn("Kall til kodeverk feilet med statuskode ${response.status}: $responseBody")
+                    call.respond(HttpStatusCode.InternalServerError, "Kall til kodeverk feilet")
                 }
                 call.respond(response.status, responseBody)
             } catch (e: Throwable) {

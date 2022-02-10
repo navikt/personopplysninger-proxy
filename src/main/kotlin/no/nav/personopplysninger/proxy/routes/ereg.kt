@@ -36,6 +36,7 @@ fun Route.eregRouting(client: HttpClient, environment: Environment) {
 
                 if (!response.status.isSuccess()) {
                     logger.warn("Kall til ereg feilet med statuskode ${response.status}: $responseBody")
+                    call.respond(HttpStatusCode.InternalServerError, "Kall til ereg feilet")
                 }
                 call.respond(response.status, responseBody)
             } catch (e: Throwable) {

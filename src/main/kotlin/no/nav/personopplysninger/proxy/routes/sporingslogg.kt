@@ -21,7 +21,6 @@ fun Route.sporingsloggRouting(client: HttpClient, environment: Environment) {
     route("/sporingslogg") {
         get {
             try {
-                logger.info("Kall mottatt")
                 val callId = call.request.header(HttpHeaders.NavCallId) ?: UUID.randomUUID().toString()
 
                 val response: HttpResponse =
@@ -35,6 +34,8 @@ fun Route.sporingsloggRouting(client: HttpClient, environment: Environment) {
 
                 if (!response.status.isSuccess()) {
                     logger.warn("Kall til sporingslogg feilet med statuskode ${response.status}: $responseBody")
+                    call.respond(HttpStatusCode.InternalServerError, "Kall til sporingslogg feilet")
+
                 }
                 call.respond(response.status, responseBody)
             } catch (e: Throwable) {
