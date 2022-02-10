@@ -1,5 +1,6 @@
 {
   "ingresses": [
     "https://personopplysninger-proxy.prod-fss-pub.nais.io"
-  ]
+  ],
+  "gcp-cluster": "prod-gcp"
 }
