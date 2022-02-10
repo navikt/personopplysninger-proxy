@@ -9,7 +9,7 @@ import io.ktor.http.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
-import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonElement
 import no.nav.personbruker.dittnav.common.logging.util.logger
 import no.nav.personopplysninger.proxy.config.Environment
 import no.nav.personopplysninger.proxy.config.NavCallId
@@ -30,7 +30,7 @@ fun Route.sporingsloggRouting(client: HttpClient, environment: Environment) {
                         header(HttpHeaders.NavConsumerId, environment.consumerId)
                     }
 
-                val responseBody: JsonArray = response.receive()
+                val responseBody: JsonElement = response.receive()
 
                 if (!response.status.isSuccess()) {
                     logger.warn("Kall til sporingslogg feilet med statuskode ${response.status}: $responseBody")
