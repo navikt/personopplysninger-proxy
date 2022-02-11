@@ -9,15 +9,23 @@ spec:
   image: {{version}}
   port: 8080
   liveness:
-    path: /personopplysninger-proxy/internal/isAlive
+    path: /internal/isAlive
     initialDelay: 10
   readiness:
-    path: /personopplysninger-proxy/internal/isReady
+    path: /internal/isReady
     initialDelay: 10
   replicas:
     min: 2
     max: 4
   webproxy: true
+  tokenx:
+    enabled: true
+  accessPolicy:
+    inbound:
+      rules:
+        - application: dsop-api
+          namespace: personbruker
+          cluster: {{ gcp-cluster }}
   ingresses:
   {{#each ingresses}}
     - "{{this}}"
@@ -31,4 +39,3 @@ spec:
     requests:
       cpu: "500m"
       memory: 384Mi
-

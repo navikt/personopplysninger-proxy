@@ -1,6 +1,7 @@
 package no.nav.personopplysninger.proxy.config
 
 import io.ktor.application.*
+import io.ktor.auth.*
 import io.ktor.client.*
 import io.ktor.features.*
 import io.ktor.http.*
@@ -8,6 +9,10 @@ import io.ktor.routing.*
 import io.ktor.serialization.*
 import io.ktor.util.*
 import no.nav.personopplysninger.proxy.health.healthApi
+import no.nav.personopplysninger.proxy.routes.eregRouting
+import no.nav.personopplysninger.proxy.routes.kodeverkRouting
+import no.nav.personopplysninger.proxy.routes.sporingsloggRouting
+import no.nav.tms.token.support.authentication.installer.installAuthenticators
 
 @KtorExperimentalAPI
 fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()) {
@@ -25,8 +30,19 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
         json(jsonConfig())
     }
 
+    installAuthenticators {
+        installTokenXAuth {
+            setAsDefault = true
+        }
+    }
+
     routing {
         healthApi(appContext.healthService)
+        authenticate {
+            kodeverkRouting(appContext.httpClient, environment)
+            eregRouting(appContext.httpClient, environment)
+            sporingsloggRouting(appContext.httpClient, environment)
+        }
     }
 
     configureShutdownHook(appContext.httpClient)
