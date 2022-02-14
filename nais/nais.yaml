@@ -26,6 +26,9 @@ spec:
         - application: dsop-api
           namespace: personbruker
           cluster: {{ gcp-cluster }}
+        - application: arbeidsforhold-api
+          namespace: personbruker
+          cluster: {{ gcp-cluster }}
   ingresses:
   {{#each ingresses}}
     - "{{this}}"

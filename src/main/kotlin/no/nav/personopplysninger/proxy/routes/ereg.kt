@@ -18,19 +18,27 @@ import no.nav.personopplysninger.proxy.config.NavSelvbetjeningstoken
 import java.util.*
 
 private const val ORGNR = "orgnr"
+private const val GYLDIG_DATO = "gyldigDato"
 
 fun Route.eregRouting(client: HttpClient, environment: Environment) {
     route("/v1/organisasjon/{orgnr}/noekkelinfo") {
         get {
             try {
                 val callId = call.request.header(HttpHeaders.NavCallId) ?: UUID.randomUUID().toString()
+                val gyldigDato = call.request.queryParameters[GYLDIG_DATO]
 
                 val response: HttpResponse =
                     client.get(environment.eregUrl + "/v1/organisasjon/${call.parameters[ORGNR]}/noekkelinfo") {
                         header(HttpHeaders.Authorization, "Bearer ".plus(call.request.header(HttpHeaders.NavSelvbetjeningstoken)))
                         header(HttpHeaders.NavCallId, callId)
                         header(HttpHeaders.NavConsumerId, environment.consumerId)
+
+                        if (!gyldigDato.isNullOrEmpty()) {
+                            parameter(GYLDIG_DATO, gyldigDato)
+                        }
                     }
+
+                logger.info("Kall til url: ${response.call.request.url}") // TODO: Fjern denne
 
                 val responseBody: JsonElement = response.receive()
 

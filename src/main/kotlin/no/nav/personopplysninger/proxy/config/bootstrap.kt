@@ -9,6 +9,7 @@ import io.ktor.routing.*
 import io.ktor.serialization.*
 import io.ktor.util.*
 import no.nav.personopplysninger.proxy.health.healthApi
+import no.nav.personopplysninger.proxy.routes.aaregRouting
 import no.nav.personopplysninger.proxy.routes.eregRouting
 import no.nav.personopplysninger.proxy.routes.kodeverkRouting
 import no.nav.personopplysninger.proxy.routes.sporingsloggRouting
@@ -41,6 +42,7 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
         authenticate {
             kodeverkRouting(appContext.httpClient, environment)
             eregRouting(appContext.httpClient, environment)
+            aaregRouting(appContext.httpClient, environment)
             sporingsloggRouting(appContext.httpClient, environment)
         }
     }
