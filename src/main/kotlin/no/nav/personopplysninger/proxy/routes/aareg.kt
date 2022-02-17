@@ -14,7 +14,7 @@ import no.nav.personbruker.dittnav.common.logging.util.logger
 import no.nav.personopplysninger.proxy.config.Environment
 import no.nav.personopplysninger.proxy.config.NavCallId
 import no.nav.personopplysninger.proxy.config.NavConsumerId
-import no.nav.personopplysninger.proxy.config.NavSelvbetjeningstoken
+import no.nav.personopplysninger.proxy.config.NavConsumerToken
 import java.util.*
 
 private const val HISTORIKK = "historikk"
@@ -34,7 +34,7 @@ fun Route.aaregRouting(client: HttpClient, environment: Environment) {
 
                 val response: HttpResponse =
                     client.get(environment.aaregUrl + "/v1/arbeidsforhold/${id}") {
-                        header(HttpHeaders.Authorization, "Bearer ".plus(call.request.header(HttpHeaders.NavSelvbetjeningstoken)))
+                        header(HttpHeaders.Authorization, "Bearer ".plus(call.request.header(HttpHeaders.NavConsumerToken)))
                         header(HttpHeaders.NavCallId, callId)
                         header(HttpHeaders.NavConsumerId, environment.consumerId)
 
@@ -67,7 +67,7 @@ fun Route.aaregRouting(client: HttpClient, environment: Environment) {
 
                 val response: HttpResponse =
                     client.get(environment.aaregUrl + "/v1/arbeidstaker/arbeidsforhold") {
-                        header(HttpHeaders.Authorization, "Bearer ".plus(call.request.header(HttpHeaders.NavSelvbetjeningstoken)))
+                        header(HttpHeaders.Authorization, "Bearer ".plus(call.request.header(HttpHeaders.NavConsumerToken)))
                         header(HttpHeaders.NavCallId, callId)
                         header(HttpHeaders.NavConsumerId, environment.consumerId)
 
