@@ -6,5 +6,5 @@ val HttpHeaders.NavCallId: String
     get() = "Nav-Call-Id"
 val HttpHeaders.NavConsumerId: String
     get() = "Nav-Consumer-Id"
-val HttpHeaders.NavSelvbetjeningstoken: String
-    get() = "Nav-Selvbetjeningstoken"
+val HttpHeaders.NavConsumerToken: String
+    get() = "Nav-Consumer-Token"
