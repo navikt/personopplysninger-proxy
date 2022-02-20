@@ -28,7 +28,7 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
     }
 
     install(ContentNegotiation) {
-        json(jsonConfig())
+        json(jsonConfig(true))
     }
 
     installAuthenticators {
