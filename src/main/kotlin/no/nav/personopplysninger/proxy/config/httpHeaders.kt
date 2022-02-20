@@ -8,3 +8,5 @@ val HttpHeaders.NavConsumerId: String
     get() = "Nav-Consumer-Id"
 val HttpHeaders.NavConsumerToken: String
     get() = "Nav-Consumer-Token"
+val HttpHeaders.NavPersonident: String
+    get() = "Nav-Personident"

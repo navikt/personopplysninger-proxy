@@ -11,10 +11,7 @@ import io.ktor.response.*
 import io.ktor.routing.*
 import kotlinx.serialization.json.JsonElement
 import no.nav.personbruker.dittnav.common.logging.util.logger
-import no.nav.personopplysninger.proxy.config.Environment
-import no.nav.personopplysninger.proxy.config.NavCallId
-import no.nav.personopplysninger.proxy.config.NavConsumerId
-import no.nav.personopplysninger.proxy.config.NavConsumerToken
+import no.nav.personopplysninger.proxy.config.*
 import no.nav.personopplysninger.proxy.sts.STSConsumer
 import java.util.*
 
@@ -40,12 +37,11 @@ fun Route.aaregRouting(client: HttpClient, environment: Environment, stsConsumer
                         header(HttpHeaders.NavConsumerToken, "Bearer ".plus(stsToken))
                         header(HttpHeaders.NavCallId, callId)
                         header(HttpHeaders.NavConsumerId, environment.consumerId)
+                        header(HttpHeaders.NavPersonident, call.request.header(HttpHeaders.NavPersonident))
 
                         parameter(HISTORIKK, historikk)
                         parameter(SPORINGSINFORASJON, sporingsinformasjon)
                     }
-
-                logger.info("Kall til url: ${response.call.request.url}") // TODO: Fjern denne
 
                 val responseBody: JsonElement = response.receive()
 
@@ -67,19 +63,21 @@ fun Route.aaregRouting(client: HttpClient, environment: Environment, stsConsumer
                 val regelverk = call.request.queryParameters[REGELVERK]
                 val sporingsinformasjon = call.request.queryParameters[SPORINGSINFORASJON]
                 val arbeidsforholdtype = call.request.queryParameters[ARBEIDSFORHOLDTYPE]
+                val stsToken = stsConsumer.getToken()
 
                 val response: HttpResponse =
                     client.get(environment.aaregUrl + "/v1/arbeidstaker/arbeidsforhold") {
                         header(HttpHeaders.Authorization, "Bearer ".plus(call.request.header(HttpHeaders.NavConsumerToken)))
+                        header(HttpHeaders.NavConsumerToken, "Bearer ".plus(stsToken))
                         header(HttpHeaders.NavCallId, callId)
                         header(HttpHeaders.NavConsumerId, environment.consumerId)
+                        header(HttpHeaders.NavPersonident, call.request.header(HttpHeaders.NavPersonident))
 
                         parameter(REGELVERK, regelverk)
                         parameter(SPORINGSINFORASJON, sporingsinformasjon)
                         parameter(ARBEIDSFORHOLDTYPE, arbeidsforholdtype)
                     }
 
-                logger.info("Kall til url: ${response.call.request.url}") // TODO: Fjern denne
 
                 val responseBody: JsonElement = response.receive()
 

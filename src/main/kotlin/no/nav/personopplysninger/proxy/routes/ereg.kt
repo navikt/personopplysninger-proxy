@@ -38,7 +38,6 @@ fun Route.eregRouting(client: HttpClient, environment: Environment) {
                         }
                     }
 
-                logger.info("Kall til url: ${response.call.request.url}") // TODO: Fjern denne
 
                 val responseBody: JsonElement = response.receive()
 

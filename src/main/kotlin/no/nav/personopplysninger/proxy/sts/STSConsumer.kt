@@ -26,7 +26,6 @@ class STSConsumer(val client: HttpClient, val environment: Environment) {
                     expectSuccess = true
                 }
 
-            logger.info("Kall til url: ${response.call.request.url}") // TODO: Fjern denne
 
             val stsToken: TokenDto = response.receive()
             return stsToken.access_token
