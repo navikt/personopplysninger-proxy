@@ -15,6 +15,7 @@ import no.nav.personopplysninger.proxy.config.Environment
 import no.nav.personopplysninger.proxy.config.NavCallId
 import no.nav.personopplysninger.proxy.config.NavConsumerId
 import no.nav.personopplysninger.proxy.config.NavConsumerToken
+import no.nav.personopplysninger.proxy.sts.STSConsumer
 import java.util.*
 
 private const val HISTORIKK = "historikk"
@@ -23,7 +24,7 @@ private const val REGELVERK = "regelverk"
 private const val ARBEIDSFORHOLDTYPE = "arbeidsforholdtype"
 private const val ID = "id"
 
-fun Route.aaregRouting(client: HttpClient, environment: Environment) {
+fun Route.aaregRouting(client: HttpClient, environment: Environment, stsConsumer: STSConsumer) {
     route("/v1/arbeidsforhold/{id}") {
         get {
             try {
@@ -31,10 +32,12 @@ fun Route.aaregRouting(client: HttpClient, environment: Environment) {
                 val id = call.parameters[ID]
                 val historikk = call.request.queryParameters[HISTORIKK]
                 val sporingsinformasjon = call.request.queryParameters[SPORINGSINFORASJON]
+                val stsToken = stsConsumer.getToken()
 
                 val response: HttpResponse =
                     client.get(environment.aaregUrl + "/v1/arbeidsforhold/${id}") {
                         header(HttpHeaders.Authorization, "Bearer ".plus(call.request.header(HttpHeaders.NavConsumerToken)))
+                        header(HttpHeaders.NavConsumerToken, "Bearer ".plus(stsToken))
                         header(HttpHeaders.NavCallId, callId)
                         header(HttpHeaders.NavConsumerId, environment.consumerId)
 

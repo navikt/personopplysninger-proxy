@@ -42,7 +42,7 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
         authenticate {
             kodeverkRouting(appContext.httpClient, environment)
             eregRouting(appContext.httpClient, environment)
-            aaregRouting(appContext.httpClient, environment)
+            aaregRouting(appContext.httpClient, environment, appContext.stsConsumer)
             sporingsloggRouting(appContext.httpClient, environment)
         }
     }
