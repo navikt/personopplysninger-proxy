@@ -9,7 +9,7 @@ data class Environment(
     val aaregUrl: String = getEnvVar("AAREG_URL"),
     val sporingsloggUrl: String = getEnvVar("SPORINGSLOGG_URL"),
     val stsUrl: String = getEnvVar("STS_URL"),
-    val srvUsername: String = getEnvVar("SRVPERSONOPPLYSNINGER_USERNAME"),
-    val srvPassword: String = getEnvVar("SRVPERSONOPPLYSNINGER_PASSWORD"),
+    val srvUsername: String = getEnvVar("SRVARBEIDSFORHOLD_USERNAME"),
+    val srvPassword: String = getEnvVar("SRVARBEIDSFORHOLD_PASSWORD"),
     val consumerId: String = "personopplysninger-proxy",
 )
