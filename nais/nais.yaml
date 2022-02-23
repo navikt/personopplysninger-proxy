@@ -29,6 +29,9 @@ spec:
         - application: arbeidsforhold-api
           namespace: personbruker
           cluster: {{ gcp-cluster }}
+        - application: personopplysninger-api
+          namespace: personbruker
+          cluster: {{ gcp-cluster }}
   ingresses:
   {{#each ingresses}}
     - "{{this}}"

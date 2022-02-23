@@ -10,3 +10,5 @@ val HttpHeaders.NavConsumerToken: String
     get() = "Nav-Consumer-Token"
 val HttpHeaders.NavPersonident: String
     get() = "Nav-Personident"
+val HttpHeaders.Enhetsnr: String
+    get() = "enhetsnr"

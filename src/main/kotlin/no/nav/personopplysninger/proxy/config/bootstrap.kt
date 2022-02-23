@@ -7,17 +7,14 @@ import io.ktor.features.*
 import io.ktor.http.*
 import io.ktor.routing.*
 import io.ktor.serialization.*
-import io.ktor.util.*
 import no.nav.personopplysninger.proxy.health.healthApi
-import no.nav.personopplysninger.proxy.routes.aaregRouting
-import no.nav.personopplysninger.proxy.routes.eregRouting
-import no.nav.personopplysninger.proxy.routes.kodeverkRouting
-import no.nav.personopplysninger.proxy.routes.sporingsloggRouting
+import no.nav.personopplysninger.proxy.routes.*
 import no.nav.tms.token.support.authentication.installer.installAuthenticators
+import no.nav.tms.token.support.tokendings.exchange.TokendingsServiceBuilder
 
-@KtorExperimentalAPI
 fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()) {
     val environment = Environment()
+    val tokendingsService = TokendingsServiceBuilder.buildTokendingsService()
 
     install(DefaultHeaders)
 
@@ -43,7 +40,11 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
             kodeverkRouting(appContext.httpClient, environment)
             eregRouting(appContext.httpClient, environment)
             aaregRouting(appContext.httpClient, environment, appContext.stsConsumer)
+            norg2Routing(appContext.httpClient, environment)
             sporingsloggRouting(appContext.httpClient, environment)
+            tpsProxyRouting(appContext.httpClient, environment)
+            medlRouting(appContext.httpClient, environment, tokendingsService)
+            inst2Routing(appContext.httpClient, environment)
         }
     }
 
