@@ -45,6 +45,7 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
             tpsProxyRouting(appContext.httpClient, environment)
             medlRouting(appContext.httpClient, environment, tokendingsService)
             inst2Routing(appContext.httpClient, environment)
+            personmottak(appContext.httpClient, environment, appContext.stsConsumer)
         }
     }
 

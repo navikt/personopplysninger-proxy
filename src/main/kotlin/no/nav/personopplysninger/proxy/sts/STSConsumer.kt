@@ -14,18 +14,17 @@ import java.util.*
 
 class STSConsumer(val client: HttpClient, val environment: Environment) {
 
-    suspend fun getToken(): String {
+    suspend fun getToken(username: String, password: String): String {
         try {
             val response: HttpResponse =
                 client.get(environment.stsUrl + "/rest/v1/sts/token") {
                     header(HttpHeaders.NavConsumerId, environment.consumerId)
-                    header(HttpHeaders.Authorization, createBasicAuthHeaderValue(environment))
+                    header(HttpHeaders.Authorization, createBasicAuthHeaderValue("$username:$password"))
 
                     parameter("grant_type", "client_credentials")
                     parameter("scope", "openid")
                     expectSuccess = true
                 }
-
 
             val stsToken: TokenDto = response.receive()
             return stsToken.access_token
@@ -35,8 +34,7 @@ class STSConsumer(val client: HttpClient, val environment: Environment) {
         }
     }
 
-    private fun createBasicAuthHeaderValue(env: Environment): String {
-        val token = "${env.srvUsername}:${env.srvPassword}"
+    private fun createBasicAuthHeaderValue(token: String): String {
         try {
             return "BASIC " + Base64.getEncoder().encodeToString(token.toByteArray(charset("UTF-8")))
         } catch (ex: UnsupportedEncodingException) {
