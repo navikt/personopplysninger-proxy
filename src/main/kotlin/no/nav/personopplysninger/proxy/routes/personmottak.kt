@@ -60,7 +60,6 @@ fun Route.personmottak(client: HttpClient, environment: Environment, stsConsumer
                 val stsToken = stsConsumer.getToken(environment.srvpersonopplysningerUsername, environment.srvpersonopplysningerPassword)
 
                 logger.info("Url: " + environment.personMottakUrl + "/api/v1/endring/bankkonto")
-                logger.info("STS token: " + stsToken.substring(20))
                 logger.info(requestBody.toString())
 
                 val response: HttpResponse =
