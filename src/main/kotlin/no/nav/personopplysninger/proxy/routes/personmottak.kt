@@ -59,16 +59,18 @@ fun Route.personmottak(client: HttpClient, environment: Environment, stsConsumer
                 val callId = call.request.header(HttpHeaders.NavCallId) ?: UUID.randomUUID().toString()
                 val requestBody = call.receive<JsonElement>()
                 val stsToken = stsConsumer.getToken(environment.srvpersonopplysningerUsername, environment.srvpersonopplysningerPassword)
-
+                val selvbetjeningToken = call.request.header(HttpHeaders.NavConsumerToken)!!
                 logger.info("Url: " + environment.personMottakUrl + "/api/v1/endring/bankkonto")
                 logger.info(requestBody.toString())
+                logger.info("STS token: " + stsToken.substring(0, 20))
+                logger.info("Selvbetjening token: " + selvbetjeningToken.substring(0, 20))
 
                 val response: HttpResponse =
                     client.post(environment.personMottakUrl + "/api/v1/endring/bankkonto") {
                         body = requestBody
                         contentType(ContentType.Application.Json)
 
-                        header(HttpHeaders.Authorization, "Bearer ".plus(call.request.header(HttpHeaders.NavConsumerToken)))
+                        header(HttpHeaders.Authorization, "Bearer ".plus(selvbetjeningToken))
                         header(HttpHeaders.NavConsumerToken, "Bearer ".plus(stsToken))
                         header(HttpHeaders.NavCallId, callId)
                         header(HttpHeaders.NavConsumerId, environment.consumerId)
