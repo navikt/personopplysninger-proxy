@@ -73,6 +73,8 @@ fun Route.personmottak(client: HttpClient, environment: Environment, stsConsumer
                         header(HttpHeaders.NavPersonident, call.request.header(HttpHeaders.NavPersonident))
                     }
 
+                logger.info("foo")
+
                 val responseBody: JsonElement = response.receive()
 
                 if (!response.status.isSuccess()) {
