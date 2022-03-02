@@ -59,6 +59,8 @@ fun Route.personmottak(client: HttpClient, environment: Environment, stsConsumer
                 val requestBody = call.receive<JsonElement>()
                 val stsToken = stsConsumer.getToken(environment.srvpersonopplysningerUsername, environment.srvpersonopplysningerPassword)
 
+                logger.info("Url: " + environment.personMottakUrl + "/api/v1/endring/bankkonto")
+
                 val response: HttpResponse =
                     client.post(path = environment.personMottakUrl + "/api/v1/endring/bankkonto", body = requestBody) {
                         contentType(ContentType.Application.Json)
