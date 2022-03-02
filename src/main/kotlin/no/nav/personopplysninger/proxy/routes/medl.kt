@@ -24,11 +24,12 @@ fun Route.medlRouting(client: HttpClient, environment: Environment, tokendingsSe
             try {
                 val callId = call.request.header(HttpHeaders.NavCallId) ?: UUID.randomUUID().toString()
 
+                val authorization = call.request.header(HttpHeaders.Authorization)!!
+                val token =
+                    if (authorization.startsWith("Bearer ")) authorization.substring(7, authorization.length)
+                    else authorization
                 val tokenxToken =
-                    tokendingsService.exchangeToken(
-                        call.request.header(HttpHeaders.Authorization)!!,
-                        environment.medlTargetApp
-                    ) // todo: må man strippe bort bearer-prefix?
+                    tokendingsService.exchangeToken(token, environment.medlTargetApp)
 
                 val response: HttpResponse =
                     client.get(environment.medlUrl + "/api/v1/innsyn/person") {
