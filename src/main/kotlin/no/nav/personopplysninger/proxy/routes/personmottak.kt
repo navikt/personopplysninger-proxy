@@ -26,7 +26,8 @@ fun Route.personmottak(client: HttpClient, environment: Environment, stsConsumer
                 val stsToken = stsConsumer.getToken(environment.srvpersonopplysningerUsername, environment.srvpersonopplysningerPassword)
 
                 val response: HttpResponse =
-                    client.post(path = environment.personMottakUrl + "/api/v1/endringer", body = requestBody) {
+                    client.post(environment.personMottakUrl + "/api/v1/endringer") {
+                        body = requestBody
                         contentType(ContentType.Application.Json)
 
                         header(HttpHeaders.Authorization, "Bearer ".plus(call.request.header(HttpHeaders.NavConsumerToken)))
@@ -63,7 +64,8 @@ fun Route.personmottak(client: HttpClient, environment: Environment, stsConsumer
                 logger.info(requestBody.toString())
 
                 val response: HttpResponse =
-                    client.post(path = environment.personMottakUrl + "/api/v1/endring/bankkonto", body = requestBody) {
+                    client.post(environment.personMottakUrl + "/api/v1/endring/bankkonto") {
+                        body = requestBody
                         contentType(ContentType.Application.Json)
 
                         header(HttpHeaders.Authorization, "Bearer ".plus(call.request.header(HttpHeaders.NavConsumerToken)))
