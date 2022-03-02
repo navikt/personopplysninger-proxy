@@ -79,7 +79,7 @@ fun Route.personmottak(client: HttpClient, environment: Environment, stsConsumer
                     logger.warn("Kall til person-mottak feilet med statuskode ${response.status}: $responseBody")
                 }
 
-                val location = call.request.header(HttpHeaders.Location)
+                val location = response.headers[HttpHeaders.Location]
                 logger.info("Location: " + location)
                 if (!location.isNullOrEmpty()) {
                     call.response.header(HttpHeaders.Location, location)
