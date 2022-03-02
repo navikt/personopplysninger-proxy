@@ -37,7 +37,7 @@ fun Route.personmottak(client: HttpClient, environment: Environment, stsConsumer
                         header(HttpHeaders.NavPersonident, call.request.header(HttpHeaders.NavPersonident))
                     }
 
-                val responseBody: JsonElement = response.receive()
+                val responseBody: String = response.receive()
 
                 if (!response.status.isSuccess()) {
                     logger.warn("Kall til person-mottak feilet med statuskode ${response.status}: $responseBody")
