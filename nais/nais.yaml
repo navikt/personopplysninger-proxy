@@ -21,12 +21,18 @@ spec:
   tokenx:
     enabled: true
   accessPolicy:
+    rules:
+      - application: medlemskap-medl-api
+        namespace: team-rocket
     inbound:
       rules:
         - application: dsop-api
           namespace: personbruker
           cluster: {{ gcp-cluster }}
         - application: arbeidsforhold-api
+          namespace: personbruker
+          cluster: {{ gcp-cluster }}
+        - application: personopplysninger-api
           namespace: personbruker
           cluster: {{ gcp-cluster }}
   ingresses:

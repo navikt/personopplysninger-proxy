@@ -11,34 +11,32 @@ import io.ktor.response.*
 import io.ktor.routing.*
 import kotlinx.serialization.json.JsonElement
 import no.nav.personbruker.dittnav.common.logging.util.logger
-import no.nav.personopplysninger.proxy.config.Environment
-import no.nav.personopplysninger.proxy.config.NavCallId
-import no.nav.personopplysninger.proxy.config.NavConsumerId
-import no.nav.personopplysninger.proxy.config.NavConsumerToken
+import no.nav.personopplysninger.proxy.config.*
 import java.util.*
 
-fun Route.sporingsloggRouting(client: HttpClient, environment: Environment) {
-    route("/sporingslogg") {
+fun Route.tpsProxyRouting(client: HttpClient, environment: Environment) {
+    route("/person") {
         get {
             try {
                 val callId = call.request.header(HttpHeaders.NavCallId) ?: UUID.randomUUID().toString()
 
                 val response: HttpResponse =
-                    client.get(environment.sporingsloggUrl) {
+                    client.get(environment.tpsProxyUrl) {
                         header(HttpHeaders.Authorization, "Bearer ".plus(call.request.header(HttpHeaders.NavConsumerToken)))
                         header(HttpHeaders.NavCallId, callId)
                         header(HttpHeaders.NavConsumerId, environment.consumerId)
+                        header(HttpHeaders.NavPersonident, call.request.header(HttpHeaders.NavPersonident))
                     }
 
                 val responseBody: JsonElement = response.receive()
 
                 if (!response.status.isSuccess()) {
-                    logger.warn("Kall til sporingslogg feilet med statuskode ${response.status}: $responseBody")
-                    call.respond(HttpStatusCode.InternalServerError, "Kall til sporingslogg feilet")
+                    logger.warn("Kall til tps-proxy feilet med statuskode ${response.status}: $responseBody")
+                    call.respond(HttpStatusCode.InternalServerError, "Kall til tps-proxy feilet")
                 }
                 call.respond(response.status, responseBody)
             } catch (e: Throwable) {
-                logger.error("Teknisk feil ved kall til sporingslogg: ${e.message}", e)
+                logger.error("Teknisk feil ved kall til tps-proxy: ${e.message}", e)
             }
         }
     }

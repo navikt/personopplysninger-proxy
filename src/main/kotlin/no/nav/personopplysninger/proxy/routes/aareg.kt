@@ -29,7 +29,7 @@ fun Route.aaregRouting(client: HttpClient, environment: Environment, stsConsumer
                 val id = call.parameters[ID]
                 val historikk = call.request.queryParameters[HISTORIKK]
                 val sporingsinformasjon = call.request.queryParameters[SPORINGSINFORASJON]
-                val stsToken = stsConsumer.getToken()
+                val stsToken = stsConsumer.getToken(environment.srvarbeidsforholdUsername, environment.srvarbeidsforholdPassword)
 
                 val response: HttpResponse =
                     client.get(environment.aaregUrl + "/v1/arbeidsforhold/${id}") {
@@ -63,7 +63,7 @@ fun Route.aaregRouting(client: HttpClient, environment: Environment, stsConsumer
                 val regelverk = call.request.queryParameters[REGELVERK]
                 val sporingsinformasjon = call.request.queryParameters[SPORINGSINFORASJON]
                 val arbeidsforholdtype = call.request.queryParameters[ARBEIDSFORHOLDTYPE]
-                val stsToken = stsConsumer.getToken()
+                val stsToken = stsConsumer.getToken(environment.srvarbeidsforholdUsername, environment.srvarbeidsforholdPassword)
 
                 val response: HttpResponse =
                     client.get(environment.aaregUrl + "/v1/arbeidstaker/arbeidsforhold") {
