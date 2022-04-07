@@ -15,21 +15,15 @@ import no.nav.personopplysninger.proxy.config.Environment
 import no.nav.personopplysninger.proxy.config.NavCallId
 import no.nav.personopplysninger.proxy.config.NavConsumerId
 import no.nav.personopplysninger.proxy.config.NavPersonident
-import no.nav.tms.token.support.tokendings.exchange.TokendingsService
+import no.nav.personopplysninger.proxy.tokenx.TokenxService
 import java.util.*
 
-fun Route.medlRouting(client: HttpClient, environment: Environment, tokendingsService: TokendingsService) {
+fun Route.medlRouting(client: HttpClient, environment: Environment, tokenxService: TokenxService) {
     route("/api/v1/innsyn/person") {
         get {
             try {
                 val callId = call.request.header(HttpHeaders.NavCallId) ?: UUID.randomUUID().toString()
-
-                val authorization = call.request.header(HttpHeaders.Authorization)!!
-                val token =
-                    if (authorization.startsWith("Bearer ")) authorization.substring(7, authorization.length)
-                    else authorization
-                val tokenxToken =
-                    tokendingsService.exchangeToken(token, environment.medlTargetApp)
+                val tokenxToken = tokenxService.exchangeAuthToken(call.request, environment.medlTargetApp)
 
                 val response: HttpResponse =
                     client.get(environment.medlUrl + "/api/v1/innsyn/person") {

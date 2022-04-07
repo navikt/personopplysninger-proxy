@@ -24,6 +24,8 @@ spec:
     rules:
       - application: medlemskap-medl-api
         namespace: team-rocket
+      - application: {{ tps-proxy-appname }}
+        namespace: team-rocket
     inbound:
       rules:
         - application: dsop-api

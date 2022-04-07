@@ -20,4 +20,5 @@ data class Environment(
     val srvarbeidsforholdPassword: String = getEnvVar("SRVARBEIDSFORHOLD_PASSWORD"),
     val consumerId: String = "personopplysninger-proxy",
     val medlTargetApp: String = getEnvVar("MEDL_TARGET_APP"),
+    val tpsProxyTargetApp: String = getEnvVar("TPS_PROXY_TARGET_APP"),
 )
