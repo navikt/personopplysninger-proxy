@@ -23,7 +23,7 @@ fun Route.tpsProxyRouting(client: HttpClient, environment: Environment, tokenxSe
         get {
             try {
                 val callId = call.request.header(HttpHeaders.NavCallId) ?: UUID.randomUUID().toString()
-                val tokenxToken = tokenxService.exchangeAuthToken(call.request, environment.medlTargetApp)
+                val tokenxToken = tokenxService.exchangeAuthToken(call.request, environment.tpsProxyTargetApp)
 
                 val response: HttpResponse =
                     client.get(environment.tpsProxyUrl) {
