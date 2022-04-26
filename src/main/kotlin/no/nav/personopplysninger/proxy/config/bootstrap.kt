@@ -35,7 +35,6 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
     routing {
         healthApi(appContext.healthService)
         authenticate {
-            kodeverkRouting(appContext.httpClient, environment)
             eregRouting(appContext.httpClient, environment)
             aaregRouting(appContext.httpClient, environment, appContext.stsConsumer)
             norg2Routing(appContext.httpClient, environment)
@@ -43,7 +42,6 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
             tpsProxyRouting(appContext.httpClient, environment, appContext.tokenxService)
             medlRouting(appContext.httpClient, environment, appContext.tokenxService)
             inst2Routing(appContext.httpClient, environment)
-            personmottak(appContext.httpClient, environment, appContext.stsConsumer)
         }
     }
 
