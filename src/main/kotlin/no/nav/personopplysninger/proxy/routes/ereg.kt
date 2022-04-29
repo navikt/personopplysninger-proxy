@@ -21,7 +21,7 @@ private const val ORGNR = "orgnr"
 private const val GYLDIG_DATO = "gyldigDato"
 
 fun Route.eregRouting(client: HttpClient, environment: Environment) {
-    route("/v1/organisasjon/{orgnr}/noekkelinfo") {
+    route("/api/v1/organisasjon/{orgnr}/noekkelinfo") {
         get {
             try {
                 val callId = call.request.header(HttpHeaders.NavCallId) ?: UUID.randomUUID().toString()
