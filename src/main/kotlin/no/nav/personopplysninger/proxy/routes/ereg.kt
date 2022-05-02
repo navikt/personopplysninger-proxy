@@ -28,7 +28,7 @@ fun Route.eregRouting(client: HttpClient, environment: Environment) {
                 val gyldigDato = call.request.queryParameters[GYLDIG_DATO]
 
                 val response: HttpResponse =
-                    client.get(environment.eregUrl + "/v1/organisasjon/${call.parameters[ORGNR]}/noekkelinfo") {
+                    client.get(environment.eregUrl + "/api/v1/organisasjon/${call.parameters[ORGNR]}/noekkelinfo") {
                         header(HttpHeaders.Authorization, "Bearer ".plus(call.request.header(HttpHeaders.NavConsumerToken)))
                         header(HttpHeaders.NavCallId, callId)
                         header(HttpHeaders.NavConsumerId, environment.consumerId)

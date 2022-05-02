@@ -36,7 +36,6 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
         healthApi(appContext.healthService)
         authenticate {
             eregRouting(appContext.httpClient, environment)
-            aaregRouting(appContext.httpClient, environment, appContext.stsConsumer)
             norg2Routing(appContext.httpClient, environment)
             sporingsloggRouting(appContext.httpClient, environment)
             tpsProxyRouting(appContext.httpClient, environment, appContext.tokenxService)
