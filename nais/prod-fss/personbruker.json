@@ -3,5 +3,6 @@
     "https://personopplysninger-proxy.prod-fss-pub.nais.io"
   ],
   "gcp-cluster": "prod-gcp",
-  "tps-proxy-appname": "tps-proxy"
+  "tps-proxy-appname": "tps-proxy",
+  "inst2-appname": "inst2"
 }
