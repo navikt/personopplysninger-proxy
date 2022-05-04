@@ -13,4 +13,5 @@ data class Environment(
     val consumerId: String = "personopplysninger-proxy",
     val medlTargetApp: String = getEnvVar("MEDL_TARGET_APP"),
     val tpsProxyTargetApp: String = getEnvVar("TPS_PROXY_TARGET_APP"),
+    val inst2TargetApp: String = getEnvVar("INST2_TARGET_APP"),
 )

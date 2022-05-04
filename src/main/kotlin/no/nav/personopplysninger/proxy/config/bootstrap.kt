@@ -40,7 +40,7 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
             sporingsloggRouting(appContext.httpClient, environment)
             tpsProxyRouting(appContext.httpClient, environment, appContext.tokenxService)
             medlRouting(appContext.httpClient, environment, appContext.tokenxService)
-            inst2Routing(appContext.httpClient, environment)
+            inst2Routing(appContext.httpClient, environment, appContext.tokenxService)
         }
     }
 

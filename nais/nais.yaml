@@ -26,6 +26,8 @@ spec:
         namespace: team-rocket
       - application: {{ tps-proxy-appname }}
         namespace: team-rocket
+      - application: {{ inst2-appname }}
+        namespace: team-rocket
     inbound:
       rules:
         - application: dsop-api
