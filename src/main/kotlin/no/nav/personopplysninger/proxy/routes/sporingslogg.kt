@@ -1,14 +1,19 @@
 package no.nav.personopplysninger.proxy.routes
 
-import io.ktor.application.*
-import io.ktor.client.*
-import io.ktor.client.call.*
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
-import io.ktor.http.*
-import io.ktor.request.*
-import io.ktor.response.*
-import io.ktor.routing.*
+import io.ktor.application.call
+import io.ktor.client.HttpClient
+import io.ktor.client.call.receive
+import io.ktor.client.request.get
+import io.ktor.client.request.header
+import io.ktor.client.statement.HttpResponse
+import io.ktor.http.HttpHeaders
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.isSuccess
+import io.ktor.request.header
+import io.ktor.response.respond
+import io.ktor.routing.Route
+import io.ktor.routing.get
+import io.ktor.routing.route
 import kotlinx.serialization.json.JsonElement
 import no.nav.personbruker.dittnav.common.logging.util.logger
 import no.nav.personopplysninger.proxy.config.Environment
@@ -39,6 +44,7 @@ fun Route.sporingsloggRouting(client: HttpClient, environment: Environment) {
                 call.respond(response.status, responseBody)
             } catch (e: Throwable) {
                 logger.error("Teknisk feil ved kall til sporingslogg: ${e.message}", e)
+                call.respond(HttpStatusCode.InternalServerError, "Teknisk feil ved kall til sporingslogg")
             }
         }
     }
