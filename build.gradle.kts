@@ -1,4 +1,3 @@
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -8,21 +7,13 @@ plugins {
     kotlin("plugin.serialization").version(Kotlin.version)
 
     id(Shadow.pluginId) version (Shadow.version)
-    // Apply the application plugin to add support for building a CLI application.
+    id(Versions.pluginId) version Versions.version // ./gradlew dependencyUpdates to check for new versions
     application
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "13"
-}
-
 repositories {
-    // Use jcenter for resolving your dependencies.
-    // You can declare any Maven/Ivy/file repository here.
-    jcenter()
-    maven("https://packages.confluent.io/maven")
     maven("https://jitpack.io")
-    mavenLocal()
+    mavenCentral()
 }
 
 dependencies {
@@ -45,36 +36,20 @@ dependencies {
     implementation(Ktor.serialization)
     implementation(Logback.classic)
     implementation(Logstash.logbackEncoder)
-    implementation(Tms.KtorTokenSupport.tokenXValidation)
-    implementation(Tms.KtorTokenSupport.authenticationInstaller)
-    implementation(Tms.KtorTokenSupport.tokendingsExchange)
-
-    testImplementation(Junit.api)
-    testImplementation(Ktor.clientMock)
-    testImplementation(Ktor.clientMockJvm)
-    testImplementation(Kluent.kluent)
-    testImplementation(Mockk.mockk)
-    testImplementation(Jjwt.api)
-
-    testRuntimeOnly(Bouncycastle.bcprovJdk15on)
-    testRuntimeOnly(Jjwt.impl)
-    testRuntimeOnly(Jjwt.jackson)
-    testRuntimeOnly(Junit.engine)
+    implementation(TmsKtorTokenSupport.tokenXValidation)
+    implementation(TmsKtorTokenSupport.authenticationInstaller)
+    implementation(TmsKtorTokenSupport.tokendingsExchange)
 }
 
 application {
     mainClassName = "io.ktor.server.netty.EngineMain"
 }
 
-tasks {
-    withType<Test> {
-        useJUnitPlatform()
-        testLogging {
-            exceptionFormat = TestExceptionFormat.FULL
-            events("passed", "skipped", "failed")
-        }
-    }
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "17"
+}
 
+tasks {
     register("runServer", JavaExec::class) {
 
         environment("CORS_ALLOWED_ORIGINS", "localhost:9002")
