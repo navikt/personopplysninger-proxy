@@ -4,7 +4,6 @@ import no.nav.personbruker.dittnav.common.util.config.StringEnvVar.getEnvVar
 
 data class Environment(
     val corsAllowedOrigins: String = getEnvVar("CORS_ALLOWED_ORIGINS"),
-    val eregUrl: String = getEnvVar("EREG_URL"),
     val sporingsloggUrl: String = getEnvVar("SPORINGSLOGG_URL"),
     val tpsProxyUrl: String = getEnvVar("TPS_PROXY_URL"),
     val inst2Url: String = getEnvVar("INST2_URL"),
