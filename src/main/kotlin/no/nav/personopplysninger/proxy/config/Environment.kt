@@ -7,7 +7,6 @@ data class Environment(
     val sporingsloggUrl: String = getEnvVar("SPORINGSLOGG_URL"),
     val tpsProxyUrl: String = getEnvVar("TPS_PROXY_URL"),
     val inst2Url: String = getEnvVar("INST2_URL"),
-    val norg2Url: String = getEnvVar("NORG2_URL"),
     val medlUrl: String = getEnvVar("MEDL_URL"),
     val consumerId: String = "personopplysninger-proxy",
     val medlTargetApp: String = getEnvVar("MEDL_TARGET_APP"),
