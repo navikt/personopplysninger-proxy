@@ -15,22 +15,26 @@ object Jackson {
 }
 
 object Kotlin {
-    const val version = "1.6.21"
+    const val version = "1.7.0"
 }
 
 object Kotlinx {
     private const val groupId = "org.jetbrains.kotlinx"
 
-    const val coroutines = "$groupId:kotlinx-coroutines-core:1.6.2"
+    const val coroutines = "$groupId:kotlinx-coroutines-core:1.6.3"
     const val htmlJvm = "$groupId:kotlinx-html-jvm:0.7.5"
 }
 
 object Ktor {
-    private const val version = "1.6.8"
+    private const val version = "2.0.2"
     private const val groupId = "io.ktor"
 
-    const val auth = "$groupId:ktor-auth:$version"
-    const val authJwt = "$groupId:ktor-auth-jwt:$version"
+    const val auth = "$groupId:ktor-server-auth:$version"
+    const val authJwt = "$groupId:ktor-server-auth-jwt:$version"
+    const val cors = "$groupId:ktor-server-cors:$version"
+    const val clientContentNegotiation = "$groupId:ktor-client-content-negotiation:$version"
+    const val serverContentNegotiation = "$groupId:ktor-server-content-negotiation:$version"
+    const val defaultHeaders = "$groupId:ktor-server-default-headers:$version"
     const val serverNetty = "$groupId:ktor-server-netty:$version"
     const val clientApache = "$groupId:ktor-client-apache:$version"
     const val clientJson = "$groupId:ktor-client-json:$version"
@@ -38,9 +42,9 @@ object Ktor {
     const val clientJackson = "$groupId:ktor-client-jackson:$version"
     const val clientLogging = "$groupId:ktor-client-logging:$version"
     const val clientLoggingJvm = "$groupId:ktor-client-logging-jvm:$version"
-    const val htmlBuilder = "$groupId:ktor-html-builder:$version"
-    const val jackson = "$groupId:ktor-jackson:$version"
-    const val serialization = "$groupId:ktor-serialization:$version"
+    const val htmlBuilder = "$groupId:ktor-server-html-builder:$version"
+    const val jackson = "$groupId:ktor-serialization-jackson:$version"
+    const val serialization = "$groupId:ktor-serialization-kotlinx-json:$version"
 }
 
 object Logback {

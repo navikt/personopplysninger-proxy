@@ -1,19 +1,19 @@
 package no.nav.personopplysninger.proxy.routes
 
-import io.ktor.application.call
 import io.ktor.client.HttpClient
-import io.ktor.client.call.receive
+import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.header
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.isSuccess
-import io.ktor.request.header
-import io.ktor.response.respond
-import io.ktor.routing.Route
-import io.ktor.routing.get
-import io.ktor.routing.route
+import io.ktor.server.application.call
+import io.ktor.server.request.header
+import io.ktor.server.response.respond
+import io.ktor.server.routing.Route
+import io.ktor.server.routing.get
+import io.ktor.server.routing.route
 import kotlinx.serialization.json.JsonElement
 import no.nav.personbruker.dittnav.common.logging.util.logger
 import no.nav.personopplysninger.proxy.config.Environment
@@ -38,7 +38,7 @@ fun Route.inst2Routing(client: HttpClient, environment: Environment, tokenxServi
                         header(HttpHeaders.NavPersonident, call.request.header(HttpHeaders.NavPersonident))
                     }
 
-                val responseBody: JsonElement = response.receive()
+                val responseBody: JsonElement = response.body()
 
                 if (!response.status.isSuccess()) {
                     logger.warn("Kall til inst2 feilet med statuskode ${response.status}: $responseBody")

@@ -1,22 +1,22 @@
 package no.nav.personopplysninger.proxy.config
 
-import io.ktor.application.Application
-import io.ktor.application.ApplicationStopping
-import io.ktor.application.install
-import io.ktor.auth.authenticate
 import io.ktor.client.HttpClient
-import io.ktor.features.CORS
-import io.ktor.features.ContentNegotiation
-import io.ktor.features.DefaultHeaders
 import io.ktor.http.HttpHeaders
-import io.ktor.routing.routing
-import io.ktor.serialization.json
+import io.ktor.serialization.kotlinx.json.json
+import io.ktor.server.application.Application
+import io.ktor.server.application.ApplicationStopping
+import io.ktor.server.application.install
+import io.ktor.server.auth.authenticate
+import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.server.plugins.cors.routing.CORS
+import io.ktor.server.plugins.defaultheaders.DefaultHeaders
+import io.ktor.server.routing.routing
 import no.nav.personopplysninger.proxy.health.healthApi
 import no.nav.personopplysninger.proxy.routes.inst2Routing
 import no.nav.personopplysninger.proxy.routes.medlRouting
 import no.nav.personopplysninger.proxy.routes.sporingsloggRouting
 import no.nav.personopplysninger.proxy.routes.tpsProxyRouting
-import no.nav.tms.token.support.authentication.installer.installAuthenticators
+import no.nav.tms.token.support.authentication.installer.AuthenticatorConfig
 
 fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()) {
     val environment = Environment()
@@ -24,9 +24,9 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
     install(DefaultHeaders)
 
     install(CORS) {
-        host(environment.corsAllowedOrigins)
+        allowHost(environment.corsAllowedOrigins)
         allowCredentials = true
-        header(HttpHeaders.ContentType)
+        allowHeader(HttpHeaders.ContentType)
     }
 
     install(ContentNegotiation) {
@@ -50,6 +50,10 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
     }
 
     configureShutdownHook(appContext.httpClient)
+}
+
+fun installAuthenticators(configure: AuthenticatorConfig.() -> Unit) {
+    // TODO: Bruk ny versjon av tms-ktor-token-support etter migrering
 }
 
 private fun Application.configureShutdownHook(httpClient: HttpClient) {

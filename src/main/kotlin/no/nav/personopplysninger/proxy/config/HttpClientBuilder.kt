@@ -1,17 +1,16 @@
 package no.nav.personopplysninger.proxy.config
 
-import io.ktor.client.*
-import io.ktor.client.engine.apache.*
-import io.ktor.client.features.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.apache.Apache
+import io.ktor.client.plugins.HttpTimeout
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 
 object HttpClientBuilder {
 
-    fun build(jsonSerializer: KotlinxSerializer = KotlinxSerializer(jsonConfig())): HttpClient {
+    fun build(): HttpClient {
         return HttpClient(Apache) {
-            install(JsonFeature) {
-                serializer = jsonSerializer
+            install(ContentNegotiation) {
+                jsonConfig()
             }
             install(HttpTimeout)
             expectSuccess = false
