@@ -44,7 +44,7 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
             val status = call.response.status()
             val httpMethod = call.request.httpMethod.value
             val path = call.request.path()
-            "Status: $status, HTTP method: $httpMethod, Path: $path"
+            "$status - $httpMethod $path"
         }
     }
 
