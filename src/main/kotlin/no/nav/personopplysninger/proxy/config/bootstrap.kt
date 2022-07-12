@@ -10,6 +10,8 @@ import io.ktor.features.CallLogging
 import io.ktor.features.ContentNegotiation
 import io.ktor.features.DefaultHeaders
 import io.ktor.http.HttpHeaders
+import io.ktor.request.httpMethod
+import io.ktor.request.path
 import io.ktor.routing.routing
 import io.ktor.serialization.json
 import no.nav.personopplysninger.proxy.health.healthApi
@@ -34,7 +36,18 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
         json(jsonConfig())
     }
 
-    install(CallLogging)
+    install(CallLogging) {
+        filter { call ->
+            !call.request.path().startsWith("/internal")
+        }
+        format { call ->
+            val status = call.response.status()
+            val httpMethod = call.request.httpMethod.value
+            val path = call.request.path()
+            "Status: $status, HTTP method: $httpMethod, Path: $path"
+        }
+    }
+
 
     installAuthenticators {
         installTokenXAuth {
