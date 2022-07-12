@@ -6,6 +6,7 @@ import io.ktor.application.install
 import io.ktor.auth.authenticate
 import io.ktor.client.HttpClient
 import io.ktor.features.CORS
+import io.ktor.features.CallLogging
 import io.ktor.features.ContentNegotiation
 import io.ktor.features.DefaultHeaders
 import io.ktor.http.HttpHeaders
@@ -32,6 +33,8 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
     install(ContentNegotiation) {
         json(jsonConfig())
     }
+
+    install(CallLogging)
 
     installAuthenticators {
         installTokenXAuth {
