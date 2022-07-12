@@ -37,9 +37,7 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
     }
 
     install(CallLogging) {
-        filter { call ->
-            !call.request.path().startsWith("/internal")
-        }
+        filter { call -> !call.request.path().contains("internal") }
         format { call ->
             val status = call.response.status()
             val httpMethod = call.request.httpMethod.value
