@@ -48,7 +48,6 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
         }
     }
 
-
     installAuthenticators {
         installTokenXAuth {
             setAsDefault = true
