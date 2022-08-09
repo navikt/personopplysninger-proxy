@@ -15,18 +15,18 @@ object Jackson {
 }
 
 object Kotlin {
-    const val version = "1.7.0"
+    const val version = "1.7.10"
 }
 
 object Kotlinx {
     private const val groupId = "org.jetbrains.kotlinx"
 
-    const val coroutines = "$groupId:kotlinx-coroutines-core:1.6.3"
-    const val htmlJvm = "$groupId:kotlinx-html-jvm:0.7.5"
+    const val coroutines = "$groupId:kotlinx-coroutines-core:1.6.4"
+    const val htmlJvm = "$groupId:kotlinx-html-jvm:0.8.0"
 }
 
 object Ktor {
-    private const val version = "2.0.2"
+    private const val version = "2.0.3"
     private const val groupId = "io.ktor"
 
     const val auth = "$groupId:ktor-server-auth:$version"
