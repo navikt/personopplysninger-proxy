@@ -1,10 +1,11 @@
 package no.nav.personopplysninger.proxy.health
 
-import io.ktor.application.*
-import io.ktor.http.*
-import io.ktor.response.*
-import io.ktor.routing.Routing
-import io.ktor.routing.get
+import io.ktor.http.ContentType
+import io.ktor.http.HttpStatusCode
+import io.ktor.server.application.call
+import io.ktor.server.response.respondText
+import io.ktor.server.routing.Routing
+import io.ktor.server.routing.get
 
 fun Routing.healthApi(healthService: HealthService) {
 

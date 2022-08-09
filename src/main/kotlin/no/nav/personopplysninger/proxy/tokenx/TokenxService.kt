@@ -1,7 +1,8 @@
 package no.nav.personopplysninger.proxy.tokenx
 
-import io.ktor.http.*
-import io.ktor.request.*
+import io.ktor.http.HttpHeaders
+import io.ktor.server.request.ApplicationRequest
+import io.ktor.server.request.header
 import no.nav.tms.token.support.tokendings.exchange.TokendingsService
 
 class TokenxService(val tokendingsService: TokendingsService) {
