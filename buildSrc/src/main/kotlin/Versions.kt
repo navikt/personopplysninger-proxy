@@ -36,12 +36,12 @@ object Ktor {
     const val serverContentNegotiation = "$groupId:ktor-server-content-negotiation:$version"
     const val defaultHeaders = "$groupId:ktor-server-default-headers:$version"
     const val serverNetty = "$groupId:ktor-server-netty:$version"
+    const val serverCallLogging = "$groupId:ktor-server-call-logging:$version"
     const val clientApache = "$groupId:ktor-client-apache:$version"
     const val clientJson = "$groupId:ktor-client-json:$version"
-    const val clientSerializationJvm = "$groupId:ktor-client-serialization-jvm:$version"
+    const val clientSerialization = "$groupId:ktor-client-serialization:$version"
     const val clientJackson = "$groupId:ktor-client-jackson:$version"
     const val clientLogging = "$groupId:ktor-client-logging:$version"
-    const val clientLoggingJvm = "$groupId:ktor-client-logging-jvm:$version"
     const val htmlBuilder = "$groupId:ktor-server-html-builder:$version"
     const val jackson = "$groupId:ktor-serialization-jackson:$version"
     const val serialization = "$groupId:ktor-serialization-kotlinx-json:$version"
@@ -63,7 +63,7 @@ object Shadow {
 }
 
 object TmsKtorTokenSupport {
-    private const val version = "2022.05.19-09.32-5076b2435b0a"
+    private const val version = "2.0.0"
     private const val groupId = "com.github.navikt.tms-ktor-token-support"
 
     const val authenticationInstaller = "$groupId:token-support-authentication-installer:$version"
