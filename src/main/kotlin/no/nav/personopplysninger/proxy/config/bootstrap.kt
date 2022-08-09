@@ -17,7 +17,6 @@ import io.ktor.serialization.json
 import no.nav.personopplysninger.proxy.health.healthApi
 import no.nav.personopplysninger.proxy.routes.inst2Routing
 import no.nav.personopplysninger.proxy.routes.medlRouting
-import no.nav.personopplysninger.proxy.routes.sporingsloggRouting
 import no.nav.personopplysninger.proxy.routes.tpsProxyRouting
 import no.nav.tms.token.support.authentication.installer.installAuthenticators
 
@@ -55,7 +54,6 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
     routing {
         healthApi(appContext.healthService)
         authenticate {
-            sporingsloggRouting(appContext.httpClient, environment)
             tpsProxyRouting(appContext.httpClient, environment, appContext.tokenxService)
             medlRouting(appContext.httpClient, environment, appContext.tokenxService)
             inst2Routing(appContext.httpClient, environment, appContext.tokenxService)
