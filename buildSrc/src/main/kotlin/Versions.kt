@@ -29,6 +29,7 @@ object Ktor {
     private const val version = "2.0.3"
     private const val groupId = "io.ktor"
 
+    const val metricsMicrometer = "$groupId:ktor-server-metrics-micrometer:$version"
     const val auth = "$groupId:ktor-server-auth:$version"
     const val authJwt = "$groupId:ktor-server-auth-jwt:$version"
     const val cors = "$groupId:ktor-server-cors:$version"
@@ -55,6 +56,11 @@ object Logback {
 object Logstash {
     private const val version = "7.2"
     const val logbackEncoder = "net.logstash.logback:logstash-logback-encoder:$version"
+}
+
+object Micrometer {
+    private const val version = "1.9.2"
+    const val registryPrometheus = "io.micrometer:micrometer-registry-prometheus:$version"
 }
 
 object Shadow {

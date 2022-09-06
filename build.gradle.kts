@@ -38,6 +38,8 @@ dependencies {
     implementation(Ktor.serverNetty)
     implementation(Ktor.serverCallLogging)
     implementation(Ktor.serialization)
+    implementation(Ktor.metricsMicrometer)
+    implementation(Micrometer.registryPrometheus)
     implementation(Logback.classic)
     implementation(Logstash.logbackEncoder)
     implementation(TmsKtorTokenSupport.tokenXValidation)

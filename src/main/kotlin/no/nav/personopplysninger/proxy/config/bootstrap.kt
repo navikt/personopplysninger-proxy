@@ -7,6 +7,7 @@ import io.ktor.server.application.Application
 import io.ktor.server.application.ApplicationStopping
 import io.ktor.server.application.install
 import io.ktor.server.auth.authenticate
+import io.ktor.server.metrics.micrometer.MicrometerMetrics
 import io.ktor.server.plugins.callloging.CallLogging
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.plugins.cors.routing.CORS
@@ -14,7 +15,7 @@ import io.ktor.server.plugins.defaultheaders.DefaultHeaders
 import io.ktor.server.request.httpMethod
 import io.ktor.server.request.path
 import io.ktor.server.routing.routing
-import no.nav.personopplysninger.proxy.health.healthApi
+import no.nav.personopplysninger.proxy.health.health
 import no.nav.personopplysninger.proxy.routes.inst2Routing
 import no.nav.personopplysninger.proxy.routes.medlRouting
 import no.nav.personopplysninger.proxy.routes.tpsProxyRouting
@@ -29,6 +30,10 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
         allowHost(environment.corsAllowedOrigins)
         allowCredentials = true
         allowHeader(HttpHeaders.ContentType)
+    }
+
+    install(MicrometerMetrics) {
+        registry = appContext.appMicrometerRegistry
     }
 
     install(ContentNegotiation) {
@@ -52,7 +57,7 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
     }
 
     routing {
-        healthApi(appContext.healthService)
+        health(appContext.appMicrometerRegistry)
         authenticate {
             tpsProxyRouting(appContext.httpClient, environment, appContext.tokenxService)
             medlRouting(appContext.httpClient, environment, appContext.tokenxService)
