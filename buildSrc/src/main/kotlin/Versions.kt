@@ -1,9 +1,8 @@
 object DittNAV {
     object Common {
-        private const val version = "2022.04.19-11.11-1043a85c4f6f"
+        private const val version = "2022.09.30-12.41-aa46d2d75788"
         private const val groupId = "com.github.navikt.dittnav-common-lib"
 
-        const val logging = "$groupId:dittnav-common-logging:$version"
         const val utils = "$groupId:dittnav-common-utils:$version"
     }
 }
@@ -15,7 +14,7 @@ object Jackson {
 }
 
 object Kotlin {
-    const val version = "1.7.10"
+    const val version = "1.7.20"
 }
 
 object Kotlinx {
@@ -26,7 +25,7 @@ object Kotlinx {
 }
 
 object Ktor {
-    private const val version = "2.0.3"
+    private const val version = "2.1.2"
     private const val groupId = "io.ktor"
 
     const val metricsMicrometer = "$groupId:ktor-server-metrics-micrometer:$version"
@@ -49,7 +48,7 @@ object Ktor {
 }
 
 object Logback {
-    private const val version = "1.2.11"
+    private const val version = "1.4.3"
     const val classic = "ch.qos.logback:logback-classic:$version"
 }
 
@@ -59,7 +58,7 @@ object Logstash {
 }
 
 object Micrometer {
-    private const val version = "1.9.2"
+    private const val version = "1.9.4"
     const val registryPrometheus = "io.micrometer:micrometer-registry-prometheus:$version"
 }
 

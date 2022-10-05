@@ -17,7 +17,6 @@ repositories {
 }
 
 dependencies {
-    implementation(DittNAV.Common.logging)
     implementation(DittNAV.Common.utils)
     implementation(Jackson.dataTypeJsr310)
     implementation(Kotlinx.coroutines)
