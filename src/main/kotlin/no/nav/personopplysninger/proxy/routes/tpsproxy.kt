@@ -15,13 +15,15 @@ import io.ktor.server.routing.Route
 import io.ktor.server.routing.get
 import io.ktor.server.routing.route
 import kotlinx.serialization.json.JsonElement
-import no.nav.personbruker.dittnav.common.logging.util.logger
 import no.nav.personopplysninger.proxy.config.Environment
 import no.nav.personopplysninger.proxy.config.NavCallId
 import no.nav.personopplysninger.proxy.config.NavConsumerId
 import no.nav.personopplysninger.proxy.config.NavPersonident
 import no.nav.personopplysninger.proxy.tokenx.TokenxService
+import org.slf4j.LoggerFactory
 import java.util.*
+
+private val logger = LoggerFactory.getLogger("tpsProxyRouting")
 
 fun Route.tpsProxyRouting(client: HttpClient, environment: Environment, tokenxService: TokenxService) {
     route("/person") {
