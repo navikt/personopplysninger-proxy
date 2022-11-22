@@ -8,7 +8,7 @@ object DittNAV {
 }
 
 object Jackson {
-    private const val version = "2.13.3"
+    private const val version = "2.14.1"
 
     const val dataTypeJsr310 = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$version"
 }
@@ -48,7 +48,7 @@ object Ktor {
 }
 
 object Logback {
-    private const val version = "1.4.3"
+    private const val version = "1.4.5"
     const val classic = "ch.qos.logback:logback-classic:$version"
 }
 
@@ -58,7 +58,7 @@ object Logstash {
 }
 
 object Micrometer {
-    private const val version = "1.9.4"
+    private const val version = "1.10.1"
     const val registryPrometheus = "io.micrometer:micrometer-registry-prometheus:$version"
 }
 
@@ -77,6 +77,6 @@ object TmsKtorTokenSupport {
 }
 
 object Versions {
-    const val version = "0.42.0"
+    const val version = "0.44.0"
     const val pluginId = "com.github.ben-manes.versions"
 }
