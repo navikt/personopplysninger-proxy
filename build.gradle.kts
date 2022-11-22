@@ -12,8 +12,8 @@ plugins {
 }
 
 repositories {
-    maven("https://jitpack.io")
     mavenCentral()
+    maven("https://jitpack.io")
 }
 
 dependencies {

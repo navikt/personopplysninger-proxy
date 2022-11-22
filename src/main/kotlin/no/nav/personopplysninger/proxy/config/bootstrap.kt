@@ -18,7 +18,6 @@ import io.ktor.server.routing.routing
 import no.nav.personopplysninger.proxy.health.health
 import no.nav.personopplysninger.proxy.routes.inst2Routing
 import no.nav.personopplysninger.proxy.routes.medlRouting
-import no.nav.personopplysninger.proxy.routes.tpsProxyRouting
 import no.nav.tms.token.support.authentication.installer.installAuthenticators
 
 fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()) {
@@ -59,7 +58,6 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
     routing {
         health(appContext.appMicrometerRegistry)
         authenticate {
-            tpsProxyRouting(appContext.httpClient, environment, appContext.tokenxService)
             medlRouting(appContext.httpClient, environment, appContext.tokenxService)
             inst2Routing(appContext.httpClient, environment, appContext.tokenxService)
         }
