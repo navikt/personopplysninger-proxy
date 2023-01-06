@@ -14,7 +14,7 @@ object Jackson {
 }
 
 object Kotlin {
-    const val version = "1.7.20"
+    const val version = "1.8.0"
 }
 
 object Kotlinx {
@@ -25,7 +25,7 @@ object Kotlinx {
 }
 
 object Ktor {
-    private const val version = "2.1.2"
+    private const val version = "2.2.2"
     private const val groupId = "io.ktor"
 
     const val metricsMicrometer = "$groupId:ktor-server-metrics-micrometer:$version"
@@ -58,7 +58,7 @@ object Logstash {
 }
 
 object Micrometer {
-    private const val version = "1.10.1"
+    private const val version = "1.10.2"
     const val registryPrometheus = "io.micrometer:micrometer-registry-prometheus:$version"
 }
 
