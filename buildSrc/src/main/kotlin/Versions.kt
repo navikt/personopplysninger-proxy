@@ -8,13 +8,13 @@ object DittNAV {
 }
 
 object Jackson {
-    private const val version = "2.14.1"
+    private const val version = "2.14.2"
 
     const val dataTypeJsr310 = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$version"
 }
 
 object Kotlin {
-    const val version = "1.8.0"
+    const val version = "1.8.10"
 }
 
 object Kotlinx {
@@ -25,7 +25,7 @@ object Kotlinx {
 }
 
 object Ktor {
-    private const val version = "2.2.2"
+    private const val version = "2.2.3"
     private const val groupId = "io.ktor"
 
     const val metricsMicrometer = "$groupId:ktor-server-metrics-micrometer:$version"
@@ -58,7 +58,7 @@ object Logstash {
 }
 
 object Micrometer {
-    private const val version = "1.10.2"
+    private const val version = "1.10.3"
     const val registryPrometheus = "io.micrometer:micrometer-registry-prometheus:$version"
 }
 
@@ -68,7 +68,7 @@ object Shadow {
 }
 
 object TmsKtorTokenSupport {
-    private const val version = "2.0.0"
+    private const val version = "2.0.1"
     private const val groupId = "com.github.navikt.tms-ktor-token-support"
 
     const val authenticationInstaller = "$groupId:token-support-authentication-installer:$version"
@@ -77,6 +77,6 @@ object TmsKtorTokenSupport {
 }
 
 object Versions {
-    const val version = "0.44.0"
+    const val version = "0.45.0"
     const val pluginId = "com.github.ben-manes.versions"
 }
