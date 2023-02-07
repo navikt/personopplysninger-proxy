@@ -4,5 +4,7 @@
   ],
   "gcp-cluster": "prod-gcp",
   "tps-proxy-appname": "tps-proxy",
-  "inst2-appname": "inst2"
+  "inst2-appname": "inst2",
+  "min-replicas": 2,
+  "max-replicas": 4
 }
