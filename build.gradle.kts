@@ -4,7 +4,7 @@ plugins {
     val versions = object {
         val kotlin = "1.9.0"
         val shadow = "8.1.1"
-        val versions = "0.47.0"
+        val versions = "0.48.0"
     }
 
     kotlin("jvm") version(versions.kotlin)
@@ -31,11 +31,11 @@ dependencies {
         val jacksonDataTypeJsr310 = "2.15.2"
         val kotlinxCoroutines = "1.7.3"
         val kotlinxHtmlJvm = "0.9.1"
-        val ktor = "2.3.2"
-        val logback = "1.4.8"
+        val ktor = "2.3.4"
+        val logback = "1.4.11"
         val logstash = "7.4"
-        val micrometer = "1.11.2"
-        val tmsKtorTokenSupport = "2.1.3"
+        val micrometer = "1.11.4"
+        val tmsKtorTokenSupport = "2.2.0"
     }
 
     implementation("com.github.navikt.dittnav-common-lib:dittnav-common-utils:${versions.dittNAVCommonUtils}")
