@@ -7,6 +7,7 @@ jobs:
     permissions:
       contents: "read"
       id-token: "write"
+      actions: "write"
     runs-on: ubuntu-latest
     environment: dev-fss:personbruker
     steps:
