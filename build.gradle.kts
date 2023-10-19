@@ -62,7 +62,6 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:${versions.logback}")
     implementation("net.logstash.logback:logstash-logback-encoder:${versions.logstash}")
     implementation("io.micrometer:micrometer-registry-prometheus:${versions.micrometer}")
-    implementation("com.github.navikt.tms-ktor-token-support:token-support-authentication-installer:${versions.tmsKtorTokenSupport}")
     implementation("com.github.navikt.tms-ktor-token-support:token-support-tokendings-exchange:${versions.tmsKtorTokenSupport}")
     implementation("com.github.navikt.tms-ktor-token-support:token-support-tokenx-validation:${versions.tmsKtorTokenSupport}")
 }
