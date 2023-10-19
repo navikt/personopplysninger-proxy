@@ -7,6 +7,7 @@ import io.ktor.server.application.Application
 import io.ktor.server.application.ApplicationStopping
 import io.ktor.server.application.install
 import io.ktor.server.auth.authenticate
+import io.ktor.server.auth.authentication
 import io.ktor.server.metrics.micrometer.MicrometerMetrics
 import io.ktor.server.plugins.callloging.CallLogging
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
@@ -18,7 +19,7 @@ import io.ktor.server.routing.routing
 import no.nav.personopplysninger.proxy.health.health
 import no.nav.personopplysninger.proxy.routes.inst2Routing
 import no.nav.personopplysninger.proxy.routes.medlRouting
-import no.nav.tms.token.support.authentication.installer.installAuthenticators
+import no.nav.tms.token.support.tokenx.validation.tokenX
 
 fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()) {
     val environment = Environment()
@@ -49,8 +50,8 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
         }
     }
 
-    installAuthenticators {
-        installTokenXAuth {
+    authentication {
+        tokenX {
             setAsDefault = true
         }
     }
