@@ -28,14 +28,14 @@ repositories {
 dependencies {
     val versions = object {
         val dittNAVCommonUtils = "2022.09.30-12.41-aa46d2d75788"
-        val jacksonDataTypeJsr310 = "2.16.0"
+        val jacksonDataTypeJsr310 = "2.16.1"
         val kotlinxCoroutines = "1.7.3"
-        val kotlinxHtmlJvm = "0.9.1"
-        val ktor = "2.3.6"
-        val logback = "1.4.11"
+        val kotlinxHtmlJvm = "0.10.1"
+        val ktor = "2.3.7"
+        val logback = "1.4.14"
         val logstash = "7.4"
-        val micrometer = "1.12.0"
-        val tmsKtorTokenSupport = "3.0.0"
+        val micrometer = "1.12.1"
+        val tmsKtorTokenSupport = "4.0.0"
     }
 
     implementation("com.github.navikt.dittnav-common-lib:dittnav-common-utils:${versions.dittNAVCommonUtils}")
@@ -62,8 +62,8 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:${versions.logback}")
     implementation("net.logstash.logback:logstash-logback-encoder:${versions.logstash}")
     implementation("io.micrometer:micrometer-registry-prometheus:${versions.micrometer}")
-    implementation("com.github.navikt.tms-ktor-token-support:token-support-tokendings-exchange:${versions.tmsKtorTokenSupport}")
-    implementation("com.github.navikt.tms-ktor-token-support:token-support-tokenx-validation:${versions.tmsKtorTokenSupport}")
+    implementation("com.github.navikt.tms-ktor-token-support:tokendings-exchange:${versions.tmsKtorTokenSupport}")
+    implementation("com.github.navikt.tms-ktor-token-support:tokenx-validation:${versions.tmsKtorTokenSupport}")
 }
 
 application {
