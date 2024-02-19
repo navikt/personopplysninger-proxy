@@ -29,12 +29,12 @@ dependencies {
     val versions = object {
         val dittNAVCommonUtils = "2022.09.30-12.41-aa46d2d75788"
         val jacksonDataTypeJsr310 = "2.16.1"
-        val kotlinxCoroutines = "1.7.3"
+        val kotlinxCoroutines = "1.8.0"
         val kotlinxHtmlJvm = "0.11.0"
-        val ktor = "2.3.7"
-        val logback = "1.4.14"
+        val ktor = "2.3.8"
+        val logback = "1.5.0"
         val logstash = "7.4"
-        val micrometer = "1.12.2"
+        val micrometer = "1.12.3"
         val tmsKtorTokenSupport = "4.0.0"
     }
 
