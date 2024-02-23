@@ -9,9 +9,12 @@ import io.ktor.server.application.install
 import io.ktor.server.auth.authenticate
 import io.ktor.server.auth.authentication
 import io.ktor.server.metrics.micrometer.MicrometerMetrics
+import io.ktor.server.plugins.callloging.CallLogging
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.plugins.cors.routing.CORS
 import io.ktor.server.plugins.defaultheaders.DefaultHeaders
+import io.ktor.server.request.httpMethod
+import io.ktor.server.request.path
 import io.ktor.server.routing.routing
 import no.nav.personopplysninger.proxy.health.health
 import no.nav.personopplysninger.proxy.routes.inst2Routing
@@ -35,6 +38,16 @@ fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()
 
     install(ContentNegotiation) {
         json(jsonConfig())
+    }
+
+    install(CallLogging) {
+        filter { call -> !call.request.path().contains("internal") }
+        format { call ->
+            val status = call.response.status()
+            val httpMethod = call.request.httpMethod.value
+            val path = call.request.path()
+            "$status - $httpMethod $path"
+        }
     }
 
     authentication {

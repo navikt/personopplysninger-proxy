@@ -50,6 +50,7 @@ dependencies {
     implementation("io.ktor:ktor-server-content-negotiation:${versions.ktor}")
     implementation("io.ktor:ktor-server-default-headers:${versions.ktor}")
     implementation("io.ktor:ktor-server-netty:${versions.ktor}")
+    implementation("io.ktor:ktor-server-call-logging:${versions.ktor}")
     implementation("io.ktor:ktor-client-apache:${versions.ktor}")
     implementation("io.ktor:ktor-client-json:${versions.ktor}")
     implementation("io.ktor:ktor-client-serialization:${versions.ktor}")
