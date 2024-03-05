@@ -1,12 +1,16 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 
 plugins {
-    kotlin("jvm") version "1.9.22"
-    kotlin("plugin.allopen") version "1.9.22"
-    kotlin("plugin.serialization") version "1.9.22"
+    val kotlinVersion = "1.9.22"
+    val shadowVersion = "8.1.1"
+    val versionsVersion = "0.50.0"
 
-    id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("com.github.ben-manes.versions") version "0.51.0" // ./gradlew dependencyUpdates to check for new versions
+    kotlin("jvm") version kotlinVersion
+    kotlin("plugin.allopen") version kotlinVersion
+    kotlin("plugin.serialization") version kotlinVersion
+
+    id("com.github.johnrengelman.shadow") version shadowVersion
+    id("com.github.ben-manes.versions") version versionsVersion // ./gradlew dependencyUpdates to check for new versions
     application
 }
 
