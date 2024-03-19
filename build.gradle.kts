@@ -25,7 +25,7 @@ repositories {
 
 dependencies {
     val dittNAVCommonUtilsVersion = "2022.09.30-12.41-aa46d2d75788"
-    val jacksonDataTypeJsr310Version = "2.16.1"
+    val jacksonDataTypeJsr310Version = "2.17.0"
     val kotlinxCoroutinesVersion = "1.8.0"
     val kotlinxHtmlJvmVersion = "0.11.0"
     val ktorVersion = "2.3.9"
