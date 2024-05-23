@@ -21,10 +21,15 @@ kotlin {
 repositories {
     mavenCentral()
     maven("https://jitpack.io")
+    maven("https://maven.pkg.github.com/navikt/tms-ktor-token-support") {
+        credentials {
+            username = System.getenv("GITHUB_ACTOR")?: "x-access-token"
+            password = System.getenv("GITHUB_TOKEN")?: project.findProperty("githubPassword") as String
+        }
+    }
 }
 
 dependencies {
-    val dittNAVCommonUtilsVersion = "2022.09.30-12.41-aa46d2d75788"
     val jacksonDataTypeJsr310Version = "2.17.1"
     val kotlinxCoroutinesVersion = "1.8.1"
     val kotlinxHtmlJvmVersion = "0.11.0"
@@ -32,9 +37,8 @@ dependencies {
     val logbackVersion = "1.5.6"
     val logstashVersion = "7.4"
     val micrometerVersion = "1.12.5"
-    val tmsKtorTokenSupportVersion = "4.0.0"
+    val tmsKtorTokenSupportVersion = "4.1.1"
 
-    implementation("com.github.navikt.dittnav-common-lib:dittnav-common-utils:$dittNAVCommonUtilsVersion")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonDataTypeJsr310Version")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinxCoroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:$kotlinxHtmlJvmVersion")
@@ -58,8 +62,8 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("net.logstash.logback:logstash-logback-encoder:$logstashVersion")
     implementation("io.micrometer:micrometer-registry-prometheus:$micrometerVersion")
-    implementation("com.github.navikt.tms-ktor-token-support:tokendings-exchange:$tmsKtorTokenSupportVersion")
-    implementation("com.github.navikt.tms-ktor-token-support:tokenx-validation:$tmsKtorTokenSupportVersion")
+    implementation("no.nav.tms.token.support:tokendings-exchange:$tmsKtorTokenSupportVersion")
+    implementation("no.nav.tms.token.support:tokenx-validation:$tmsKtorTokenSupportVersion")
 }
 
 application {
