@@ -1,7 +1,7 @@
 package no.nav.personopplysninger.proxy.config
 
-import io.micrometer.prometheus.PrometheusConfig
-import io.micrometer.prometheus.PrometheusMeterRegistry
+import io.micrometer.prometheusmetrics.PrometheusConfig
+import io.micrometer.prometheusmetrics.PrometheusMeterRegistry
 import no.nav.personopplysninger.proxy.tokenx.TokenxService
 import no.nav.tms.token.support.tokendings.exchange.TokendingsServiceBuilder
 
